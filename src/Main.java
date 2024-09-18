@@ -6,11 +6,30 @@ public class Main {
     public static void main(String[] args) {
         boolean running = true;
         Scanner sc = new Scanner(System.in);
-        Book b1 = new Book("Harry Potter: Philosopher's Stone", "J.K Rowling", "1997", "1st");
-        Book b2 = new Book("Harry Potter: Chamber of Secrets", "J.K Rowling", "1998", "1st");
+
+        Book b1 = new Book("Stjärnfall", "Elin Andersson", "2021", "1st");
+        Book b2 = new Book("Havets sång", "Magnus Lindström", "2019", "1st");
+        Book b3 = new Book("Dolda skatter", "Sara Pettersson", "2020", "1st");
+        Book b4 = new Book("Skuggornas rike", "Anders Björk", "2022", "1st");
+        Book b5 = new Book("Tidens vägar", "Karin Nilsson", "2018", "1st");
+        Book b6 = new Book("Vinterdröm", "Johan Eriksson", "2023", "1st");
+        Book b7 = new Book("Eldens hjärta", "Fredrik Svensson", "2021", "1st");
+        Book b8 = new Book("Månskensnätter", "Sofia Bergström", "2018", "1st");
+        Book b9 = new Book("Över havet", "Eva Lind", "2019", "1st");
+        Book b10 = new Book("Drömmar av guld", "Jonas Eriksson", "2021", "1st");
+
         ArrayList<Book> books = new ArrayList<>();
+
         books.add(b1);
         books.add(b2);
+        books.add(b3);
+        books.add(b4);
+        books.add(b5);
+        books.add(b6);
+        books.add(b7);
+        books.add(b8);
+        books.add(b9);
+        books.add(b10);
 
 
         while (running){
@@ -21,8 +40,20 @@ public class Main {
                     newBook(books);
                     break;
                 case 2:
-                    for (Book bookloop : books) {
-
+                    Scanner sc2 = new Scanner(System.in);
+                    System.out.println("Entre title of the book");
+                    String loanChoice = sc.next();
+                    for (Book book : books) {
+                        if (book.getBookName().equalsIgnoreCase(loanChoice)) {
+                            System.out.println(book.toString());
+                            System.out.println("Do you want to loan this book? Y/N");
+                            if (sc.next().equalsIgnoreCase("Y")){
+                                book.loanBook();
+                                System.out.println(book + " Has been loaned out");
+                            }else {
+                                System.out.println("Book is unavailable");
+                            }
+                        }
                     }
 
                     break;
@@ -33,6 +64,7 @@ public class Main {
                         if (book.isAvailability()){
                             counter++;
                             System.out.println(counter + " " + book);
+                            System.out.println();
                         }
                     }
                     break;
