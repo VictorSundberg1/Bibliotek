@@ -18,30 +18,56 @@ public class Main {
             int menuChoice = sc.nextInt();
             switch (menuChoice){
                 case 1:
-
+                    newBook(books);
                     break;
                 case 2:
-                    System.out.println("Enter name of book: ");
-                    Scanner sc2 = new Scanner(System.in);
-                    String input = sc2.next();
                     for (Book bookloop : books) {
 
                     }
 
+                    break;
                 case 3:
+                    int counter = 0;
+
                     for (Book book : books) {
-                        System.out.println(book);
+                        if (book.isAvailability()){
+                            counter++;
+                            System.out.println(counter + " " + book);
+                        }
                     }
                     break;
+                case 4:
 
+
+                    break;
+                case 5:
+
+
+                    break;
             }
-
-
         }
+    }
 
+    public static void newBook(ArrayList<Book> books){
+        String bookName, author;
+        String bookYear, bookEdition;
 
+        Scanner input = new Scanner(System.in);
 
+        System.out.println();
+        System.out.println("Add a book");
+        System.out.println("Title: ");
+        bookName = input.nextLine();
+        System.out.println("Author: ");
+        author = input.nextLine();
+        System.out.println("Year of release: ");
+        bookYear = input.next();
+        input.nextLine();
+        System.out.println("Edition: ");
+        bookEdition = input.next();
 
+        books.add(new Book(bookName, author, bookYear, bookEdition));
+        System.out.println("Book has been added!");
 
     }
 

@@ -44,11 +44,21 @@ public class Book {
                 '}';
     }
 
+
+    //GETTERS AND SETTERS
     public String getBookName() {
         return bookName;
     }
 
     public void setBookName(String bookName) {
         this.bookName = bookName;
+    }
+
+    public boolean isAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(boolean availability) {
+        this.availability = availability;
     }
 }
