@@ -40,26 +40,10 @@ public class Main {
                     newBook(books);
                     break;
                 case 2:
-                    Scanner sc2 = new Scanner(System.in);
-                    System.out.println("Entre title of the book");
-                    String loanChoice = sc.next();
-                    for (Book book : books) {
-                        if (book.getBookName().equalsIgnoreCase(loanChoice)) {
-                            System.out.println(book.toString());
-                            System.out.println("Do you want to loan this book? Y/N");
-                            if (sc.next().equalsIgnoreCase("Y")){
-                                book.loanBook();
-                                System.out.println(book + " Has been loaned out");
-                            }else {
-                                System.out.println("Book is unavailable");
-                            }
-                        }
-                    }
-
+                    searchBook(books);
                     break;
                 case 3:
                     int counter = 0;
-
                     for (Book book : books) {
                         if (book.isAvailability()){
                             counter++;
@@ -69,17 +53,46 @@ public class Main {
                     }
                     break;
                 case 4:
-
-
                     break;
                 case 5:
-
-
                     break;
             }
         }
     }
 
+    //Search and loan book function
+    public static void searchBook(ArrayList<Book> books){
+        Scanner sc2 = new Scanner(System.in);
+        System.out.println("Entre title of the book");
+        String loanChoice = sc2.nextLine();
+        boolean bookFound = false;
+
+        for (Book book : books) {
+            if (book.getBookName().equalsIgnoreCase(loanChoice)) {
+                bookFound = true;
+                System.out.println(book.toString());
+
+                if (book.isAvailability()) {
+                    System.out.println("Do you want to loan this book? Y/N");
+                    if (sc2.next().equalsIgnoreCase("Y")) {
+                        book.loanBook();
+                        System.out.println();
+                        System.out.println(book + " Has been loaned out");
+                    } else {
+                        System.out.println("No book loaned");
+                    }
+                }
+                else{
+                    System.out.println("Book is unavailable");
+                }
+            }
+        }
+        if (!bookFound){
+            System.out.println("No book with that title was found!");
+        }
+    }
+
+    //Add book function
     public static void newBook(ArrayList<Book> books){
         String bookName, author;
         String bookYear, bookEdition;
