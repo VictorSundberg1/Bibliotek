@@ -7,29 +7,18 @@ public class Main {
         boolean running = true;
         Scanner sc = new Scanner(System.in);
 
-        Book b1 = new Book("Stjärnfall", "Elin Andersson", "2021", "1st");
-        Book b2 = new Book("Havets sång", "Magnus Lindström", "2019", "1st");
-        Book b3 = new Book("Dolda skatter", "Sara Pettersson", "2020", "1st");
-        Book b4 = new Book("Skuggornas rike", "Anders Björk", "2022", "1st");
-        Book b5 = new Book("Tidens vägar", "Karin Nilsson", "2018", "1st");
-        Book b6 = new Book("Vinterdröm", "Johan Eriksson", "2023", "1st");
-        Book b7 = new Book("Eldens hjärta", "Fredrik Svensson", "2021", "1st");
-        Book b8 = new Book("Månskensnätter", "Sofia Bergström", "2018", "1st");
-        Book b9 = new Book("Över havet", "Eva Lind", "2019", "1st");
-        Book b10 = new Book("Drömmar av guld", "Jonas Eriksson", "2021", "1st");
-
         ArrayList<Book> books = new ArrayList<>();
 
-        books.add(b1);
-        books.add(b2);
-        books.add(b3);
-        books.add(b4);
-        books.add(b5);
-        books.add(b6);
-        books.add(b7);
-        books.add(b8);
-        books.add(b9);
-        books.add(b10);
+        books.add(new Book("Stjärnfall", "Elin Andersson", "2021", "1st"));
+        books.add(new Book("Havets sång", "Magnus Lindström", "2019", "1st"));
+        books.add(new Book("Dolda skatter", "Sara Pettersson", "2020", "1st"));
+        books.add(new Book("Skuggornas rike", "Anders Björk", "2022", "1st"));
+        books.add(new Book("Tidens vägar", "Karin Nilsson", "2018", "1st"));
+        books.add(new Book("Vinterdröm", "Johan Eriksson", "2023", "1st"));
+        books.add(new Book("Eldens hjärta", "Fredrik Svensson", "2021", "1st"));
+        books.add(new Book("Månskensnätter", "Sofia Bergström", "2018", "1st"));
+        books.add(new Book("Över havet", "Eva Lind", "2019", "1st"));
+        books.add(new Book("Drömmar av guld", "Jonas Eriksson", "2021", "1st"));
 
 
         while (running){
@@ -53,11 +42,50 @@ public class Main {
                     }
                     break;
                 case 4:
+                    returnBook(books);
                     break;
                 case 5:
+                    int counter2 = 0;
+                    for (Book book : books) {
+                        if (!book.isAvailability()){
+                            counter2++;
+                            System.out.println(counter2 + " " + book);
+                            System.out.println();
+                        }
+                    }
+                    break;
+                case 6:
+                    System.out.println("Goodbye!");
+                    running = false;
                     break;
             }
         }
+    }
+
+    public static void returnBook(ArrayList<Book> books){
+        Scanner sc3 = new Scanner(System.in);
+        System.out.println("Enter title of the book you want to return!");
+        String returnChoice = sc3.nextLine();
+
+        for (Book book : books){
+            if (book.getBookName().equalsIgnoreCase(returnChoice)){
+                System.out.println(book.toString());
+                if (!book.isAvailability()){
+                    System.out.println("Do you want to return this book? Y/N");
+                    if (sc3.next().equalsIgnoreCase("Y")){
+                        book.returnBook();
+                        System.out.println();
+                        System.out.println(book + " Has been returned!");
+                    } else {
+                        System.out.println("No book has been returned");
+                    }
+                }
+                else if (book.isAvailability()) {
+                    System.out.println("This book already exists in the library");
+                }
+            }
+        }
+
     }
 
     //Search and loan book function
@@ -105,7 +133,7 @@ public class Main {
         bookName = input.nextLine();
         System.out.println("Author: ");
         author = input.nextLine();
-        System.out.println("Year of release: ");
+        System.out.println("Year of the book release: ");
         bookYear = input.next();
         input.nextLine();
         System.out.println("Edition: ");
@@ -121,7 +149,8 @@ public class Main {
         System.out.println("2. Search for a book by name");
         System.out.println("3. List all available books");
         System.out.println("4. Return a book");
-        System.out.println("5. Quit");
+        System.out.println("5. List all currently loaned out books");
+        System.out.println("6. Quit");
 
     }
 }

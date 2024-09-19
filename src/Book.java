@@ -16,7 +16,7 @@ public class Book {
 
 
     public void loanBook() {
-        if (availability == true){
+        if (availability){
             availability = false;
             System.out.println( "You have loaned " + bookName);
         }else {
