@@ -32,27 +32,13 @@ public class Main {
                     searchBook(books);
                     break;
                 case 3:
-                    int counter = 0;
-                    for (Book book : books) {
-                        if (book.isAvailability()){
-                            counter++;
-                            System.out.println(counter + " " + book);
-                            System.out.println();
-                        }
-                    }
+                    checkLibrary(books);
                     break;
                 case 4:
                     returnBook(books);
                     break;
                 case 5:
-                    int counter2 = 0;
-                    for (Book book : books) {
-                        if (!book.isAvailability()){
-                            counter2++;
-                            System.out.println(counter2 + " " + book);
-                            System.out.println();
-                        }
-                    }
+                    checkLoanedBooks(books);
                     break;
                 case 6:
                     System.out.println("Goodbye!");
@@ -62,6 +48,40 @@ public class Main {
         }
     }
 
+
+    //Checking for books that have been loaned out
+    public static void checkLoanedBooks(ArrayList<Book> books){
+        int counter2 = 0;
+        System.out.println("The books that are currently loaned out are: ");
+        for (Book book : books) {
+            if (!book.isAvailability()){
+                counter2++;
+                System.out.println(counter2 + " " + book);
+                System.out.println();
+            }
+        }
+        if (counter2 < 1){
+            System.out.println("No books currently loaned out!");
+        }
+    }
+
+    //Checking for available books
+    public static void checkLibrary(ArrayList<Book> books){
+        System.out.println("The books that are available are: ");
+        int counter = 0;
+        for (Book book : books) {
+            if (book.isAvailability()){
+                counter++;
+                System.out.println(counter + " " + book);
+                System.out.println();
+            }
+        }
+        if (counter < 1){
+            System.out.println("No books currently available!");
+        }
+    }
+
+    //Return books
     public static void returnBook(ArrayList<Book> books){
         Scanner sc3 = new Scanner(System.in);
         System.out.println("Enter title of the book you want to return!");
@@ -69,7 +89,7 @@ public class Main {
 
         for (Book book : books){
             if (book.getBookName().equalsIgnoreCase(returnChoice)){
-                System.out.println(book.toString());
+                System.out.println(book);
                 if (!book.isAvailability()){
                     System.out.println("Do you want to return this book? Y/N");
                     if (sc3.next().equalsIgnoreCase("Y")){
@@ -88,7 +108,7 @@ public class Main {
 
     }
 
-    //Search and loan book function
+    //Search and loan books
     public static void searchBook(ArrayList<Book> books){
         Scanner sc2 = new Scanner(System.in);
         System.out.println("Entre title of the book");
@@ -98,7 +118,7 @@ public class Main {
         for (Book book : books) {
             if (book.getBookName().equalsIgnoreCase(loanChoice)) {
                 bookFound = true;
-                System.out.println(book.toString());
+                System.out.println(book);
 
                 if (book.isAvailability()) {
                     System.out.println("Do you want to loan this book? Y/N");
@@ -120,7 +140,7 @@ public class Main {
         }
     }
 
-    //Add book function
+    //Add new books to the arraylist
     public static void newBook(ArrayList<Book> books){
         String bookName, author;
         String bookYear, bookEdition;

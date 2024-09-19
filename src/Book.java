@@ -1,9 +1,9 @@
 public class Book {
-    String bookName;
-    String author;
-    String bookYear;
-    String bookEdition;
-    boolean availability = true;
+    private String bookName;
+    private String author;
+    private String bookYear;
+    private String bookEdition;
+    private boolean availability = true;
 
     public Book(String bookName, String author, String bookYear, String bookEdition) {
         this.bookName = bookName;
@@ -25,7 +25,7 @@ public class Book {
     }
 
     public void returnBook() {
-        if (availability == false){
+        if (!availability){
             availability = true;
             System.out.println( "You have returned " + bookName);
         }else {
@@ -50,15 +50,8 @@ public class Book {
         return bookName;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
-    }
-
     public boolean isAvailability() {
         return availability;
     }
 
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
 }
