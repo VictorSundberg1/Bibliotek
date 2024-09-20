@@ -23,24 +23,24 @@ public class Main {
 
         while (running){
             printMenu();
-            int menuChoice = sc.nextInt();
+            String menuChoice = sc.nextLine();
             switch (menuChoice){
-                case 1:
+                case "1":
                     newBook(books);
                     break;
-                case 2:
+                case "2":
                     searchBook(books);
                     break;
-                case 3:
+                case "3":
                     checkLibrary(books);
                     break;
-                case 4:
+                case "4":
                     returnBook(books);
                     break;
-                case 5:
+                case "5":
                     checkLoanedBooks(books);
                     break;
-                case 6:
+                case "6":
                     System.out.println("Goodbye!");
                     running = false;
                     break;
@@ -151,11 +151,14 @@ public class Main {
         System.out.println("Add a book");
         System.out.println("Title: ");
         bookName = input.nextLine();
+
         System.out.println("Author: ");
         author = input.nextLine();
+
         System.out.println("Year of the book release: ");
         bookYear = input.next();
         input.nextLine();
+
         System.out.println("Edition: ");
         bookEdition = input.next();
 
